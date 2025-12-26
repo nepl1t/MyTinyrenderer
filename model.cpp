@@ -44,6 +44,12 @@ Model::Model(const char* filename){
                 faces.push_back(vec3<vec3<int>>({v0.x - 1, v0.y - 1, v0.z - 1}, 
                                                 {v1.x - 1, v1.y - 1, v1.z - 1}, 
                                                 {v2.x - 1, v2.y - 1, v2.z - 1})); 
+                // face format: vertex_index/texcoord_index/normal_index
+                // How to extract vertex, texcoord, normal:
+                // vec3<float> vertex = model.vert(face[i][0]);
+                // vec3<float> texcoord = model.texcoord(face[i][1]);
+                // vec3<float> normal = model.normal(face[i][2]);
+                // which i is 0, 1, or 2 for the three vertices of the face
             }
             else {
                 printf("Error parsing face at line %d: %s\n", line_number, linebuf);
@@ -66,12 +72,27 @@ vec3<float> Model::vert(int i){
     return vertices[i];
 }
 
+vec3<float> Model::vert(int face_index, int index){
+    int vert_index = faces[face_index][index][0];
+    return vertices[vert_index];
+}
+
 vec3<float> Model::texcoord(int i){
     return texcoords[i];
 }
 
+vec3<float> Model::texcoord(int face_index, int index){
+    int tex_index = faces[face_index][index][1];
+    return texcoords[tex_index];
+}
+
 vec3<float> Model::normal(int i){
     return normals[i];
+}
+
+vec3<float> Model::normal(int face_index, int index){
+    int norm_index = faces[face_index][index][2];
+    return normals[norm_index];
 }
 
 vec3<vec3<int>> Model::face(int i){

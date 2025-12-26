@@ -57,7 +57,10 @@ class Model {
         const int get_num_normals()  const  {return static_cast<int>(normals.size());};
 
         vec3<float> vert(int i);
+        vec3<float> vert(int face_index, int index);
         vec3<float> texcoord(int i);
+        vec3<float> texcoord(int face_index, int index);
         vec3<float> normal(int i);
+        vec3<float> normal(int face_index, int index);
         vec3<vec3<int>> face(int i);
 };

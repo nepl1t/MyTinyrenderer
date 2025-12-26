@@ -1,6 +1,19 @@
+## What is it?
+
 My personal tiny renderer implementation based on [@ssloy's tinyrenderer](https://github.com/ssloy/tinyrenderer), created for learning and practice.
 
-To-be-dones:
+## Build & run
+
+Clone the repository, then run
+
+```shell
+mkdir build && cd build
+cmake -DCMAKE-BUILD-TYPE=Debug .. 
+make -j{nproc} VEREBOSE = 1
+./tinyrenderer
+```
+
+## To-be-dones:
 
 1. Bresenham’s line drawing
 2. Triangle rasterization
